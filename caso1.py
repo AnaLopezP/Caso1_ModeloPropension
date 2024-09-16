@@ -50,4 +50,7 @@ print("Valores atipicos: ")
 print(data.describe())
 # Aunque igual hay algun dato más alto que otro, no consideramos que sea atípico, ya que se repite varias veces
 
+# Guardamos el archivo limpio
+data.to_csv('cars_clean.csv', sep=';', index=False)
+print("Archivo guardado")
 
