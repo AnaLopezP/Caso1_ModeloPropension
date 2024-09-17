@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 #leemos el dataset
-data = pd.read_csv('cars_numeros.csv', sep=';')
+data = pd.read_csv('csvs/cars_numeros.csv', sep=';')
 
 #Separamos las variables características de la objetivo
 # variable obetivo Mas_1_coche

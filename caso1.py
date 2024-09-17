@@ -7,7 +7,7 @@ import seaborn as sns
 #import seaborn as sns
 
 # Importamos los datos
-data = pd.read_csv('cars.csv', sep=';', encoding='UTF-8')
+data = pd.read_csv('csvs/cars.csv', sep=';', encoding='UTF-8')
 data.head()
 
 #Eliminamos la columna CODE
@@ -57,7 +57,7 @@ print(data.describe())
 # Aunque igual hay algun dato más alto que otro, no consideramos que sea atípico, ya que se repite varias veces
 
 # Guardamos el archivo limpio
-data.to_csv('cars_clean.csv', sep=';', index=False)
+data.to_csv('csvs/cars_clean.csv', sep=';', index=False)
 print("Archivo guardado")
 
 # Separamos en datos categóricos y numéricos
@@ -81,11 +81,11 @@ for col in data_cat.columns:
     print(data_cat[col].unique())
 
 #guardamos los datos
-data_cat.to_csv('data_cat.csv', sep=';', index=False)
+data_cat.to_csv('csvs/data_cat.csv', sep=';', index=False)
 
 #Juntamos los datos
 data = pd.concat([data_cat, data_num], axis=1)
-data.to_csv('cars_numeros.csv', sep=';', index=False)
+data.to_csv('csvs/cars_numeros.csv', sep=';', index=False)
 
 
 #-------------------------REPRESENTACIÓN DE LOS DATOS--------------------------------
