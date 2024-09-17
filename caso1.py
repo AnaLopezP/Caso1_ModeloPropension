@@ -9,6 +9,9 @@ import matplotlib.pyplot as plt
 data = pd.read_csv('cars.csv', sep=';', encoding='UTF-8')
 data.head()
 
+#Eliminamos la columna CODE
+data = data.drop(columns=['CODE'])
+
 # Buscamos repetidos
 # Buscamos nulos (null y vacios)
 # Buscamos valores atipicos
@@ -60,4 +63,33 @@ data_num = data.select_dtypes(exclude=['object'])
 
 print(data_cat.head())
 print(data_num.head())
+
+#Cambiamos las variables categoricas a numericas
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+data_cat = data_cat.apply(le.fit_transform)
+print(data_cat.head())
+
+#valores únicos de las variables categóricas
+for col in data_cat.columns:
+    print(col)
+    print(data_cat[col].unique())
+
+#guardamos los datos
+data_cat.to_csv('data_cat.csv', sep=';', index=False)
+
+#Juntamos los datos
+data = pd.concat([data_cat, data_num], axis=1)
+data.to_csv('cars_numeros.csv', sep=';', index=False)
+
+
+
+# Normalizamos los datos
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+data = scaler.fit_transform(data)
+data = pd.DataFrame(data)
+data.columns = ['PRODUCTO', 'TIPO_CARROCERIA', 'COMBUSTIBLE', 'Potencia_', 'TRANS', 'FORMA_PAGO', 'ESTADO_CIVIL', 'GENERO', 'OcupaciOn', 'PROVINCIA', 'Campanna1', 'Campanna2', 'Campanna3' ,'Zona_Renta','REV_Garantia','Averia_grave','QUEJA_CAC', 'EDAD_COCHE','COSTE_VENTA','km_anno','Mas_1_coche','Revisiones','Edad Cliente','Tiempo']
+data.to_csv('cars_normalizados.csv', sep=';', index=False)
+
 
