@@ -54,3 +54,10 @@ print(data.describe())
 data.to_csv('cars_clean.csv', sep=';', index=False)
 print("Archivo guardado")
 
+# Separamos en datos categóricos y numéricos
+data_cat = data.select_dtypes(include=['object'])
+data_num = data.select_dtypes(exclude=['object'])
+
+print(data_cat.head())
+print(data_num.head())
+
