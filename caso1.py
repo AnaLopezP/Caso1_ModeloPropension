@@ -12,6 +12,21 @@ data.head()
 #Eliminamos la columna CODE
 data = data.drop(columns=['CODE'])
 
+#Representamos los datos, hacemos histogramas, diagramas de dispersión, mapa de correlación
+#Histograma
+data.hist()
+plt.show()
+
+#Diagrama de dispersión
+pd.plotting.scatter_matrix(data, alpha=0.2)
+plt.show()
+
+#Mapa de correlación
+correlacion = data.corr()
+sns.heatmap(correlacion, annot=True)
+plt.show()
+
+
 # Buscamos repetidos
 # Buscamos nulos (null y vacios)
 # Buscamos valores atipicos
@@ -82,14 +97,12 @@ data_cat.to_csv('data_cat.csv', sep=';', index=False)
 data = pd.concat([data_cat, data_num], axis=1)
 data.to_csv('cars_numeros.csv', sep=';', index=False)
 
+# Representamos los datos
+import seaborn as sns
+sns.pairplot(data)
+plt.show()
 
 
-# Normalizamos los datos
-from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
-data = scaler.fit_transform(data)
-data = pd.DataFrame(data)
-data.columns = ['PRODUCTO', 'TIPO_CARROCERIA', 'COMBUSTIBLE', 'Potencia_', 'TRANS', 'FORMA_PAGO', 'ESTADO_CIVIL', 'GENERO', 'OcupaciOn', 'PROVINCIA', 'Campanna1', 'Campanna2', 'Campanna3' ,'Zona_Renta','REV_Garantia','Averia_grave','QUEJA_CAC', 'EDAD_COCHE','COSTE_VENTA','km_anno','Mas_1_coche','Revisiones','Edad Cliente','Tiempo']
-data.to_csv('cars_normalizados.csv', sep=';', index=False)
+
 
 
