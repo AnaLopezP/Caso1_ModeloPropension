@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 #import seaborn as sns
 
 # Importamos los datos
@@ -12,44 +13,8 @@ data.head()
 #Eliminamos la columna CODE
 data = data.drop(columns=['CODE'])
 
-#Representamos los datos, hacemos histogramas, diagramas de dispersión, mapa de correlación
-#Histograma
-data.hist()
-plt.show()
 
-#Diagrama de dispersión de 2 variables
-
-def diagramas(data, x, y):
-    plt.scatter(data[x], data[y])
-    plt.xlabel(x)
-    plt.ylabel(y)
-    plt.show()
-
-#Vamos a ver Zona_Renta, ESTADO_CIVIL y QUEJA_CAC con el Mas_1_coche
-diagramas(data, 'Zona_Renta', 'Mas_1_coche')
-diagramas(data, 'ESTADO_CIVIL', 'Mas_1_coche')
-diagramas(data, 'QUEJA_CAC', 'Mas_1_coche')
-
-#Vamos a ver Zona_Renta, ESTADO_CIVIL y QUEJA_CAC con el Tiempo
-diagramas(data, 'Zona_Renta', 'Tiempo')
-diagramas(data, 'ESTADO_CIVIL', 'Tiempo')
-diagramas(data, 'QUEJA_CAC', 'Tiempo')
-
-
-# Averia_grave y EDAD_COCHE
-diagramas(data, 'Averia_grave', 'EDAD_COCHE')
-
-#Mas_1_coche y Edad Cliente
-diagramas(data, 'Mas_1_coche', 'Edad Cliente')
-
-
-#Mapa de correlación de los datos
-correlacion = data.corr()
-sns.heatmap(correlacion, annot=True)
-plt.show()
-
-
-
+#-------------------------LIMPIEZA DE LOS DATOS--------------------------------
 # Buscamos repetidos
 # Buscamos nulos (null y vacios)
 # Buscamos valores atipicos
@@ -102,6 +67,8 @@ data_num = data.select_dtypes(exclude=['object'])
 print(data_cat.head())
 print(data_num.head())
 
+#-------------------------TRANSFORMACIÓN DE LOS DATOS--------------------------------
+
 #Cambiamos las variables categoricas a numericas
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
@@ -120,10 +87,45 @@ data_cat.to_csv('data_cat.csv', sep=';', index=False)
 data = pd.concat([data_cat, data_num], axis=1)
 data.to_csv('cars_numeros.csv', sep=';', index=False)
 
-# Representamos los datos
-import seaborn as sns
-sns.pairplot(data)
+
+#-------------------------REPRESENTACIÓN DE LOS DATOS--------------------------------
+
+#Representamos los datos, hacemos histogramas, diagramas de dispersión, mapa de correlación
+#Histograma
+data.hist()
 plt.show()
+
+#Diagrama de dispersión de 2 variables
+
+def diagramas(data, x, y):
+    plt.scatter(data[x], data[y])
+    plt.xlabel(x)
+    plt.ylabel(y)
+    plt.show()
+
+#Vamos a ver Zona_Renta, ESTADO_CIVIL y QUEJA_CAC con el Mas_1_coche
+diagramas(data, 'Zona_Renta', 'Mas_1_coche')
+diagramas(data, 'ESTADO_CIVIL', 'Mas_1_coche')
+diagramas(data, 'QUEJA_CAC', 'Mas_1_coche')
+
+#Vamos a ver Zona_Renta, ESTADO_CIVIL y QUEJA_CAC con el Tiempo
+diagramas(data, 'Zona_Renta', 'Tiempo')
+diagramas(data, 'ESTADO_CIVIL', 'Tiempo')
+diagramas(data, 'QUEJA_CAC', 'Tiempo')
+
+
+# Averia_grave y EDAD_COCHE
+diagramas(data, 'Averia_grave', 'EDAD_COCHE')
+
+#Mas_1_coche y Edad Cliente
+diagramas(data, 'Mas_1_coche', 'Edad Cliente')
+
+
+#Mapa de correlación de los datos
+correlacion = data.corr()
+sns.heatmap(correlacion, annot=True)
+plt.show()
+
 
 
 
