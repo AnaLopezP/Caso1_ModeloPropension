@@ -17,14 +17,37 @@ data = data.drop(columns=['CODE'])
 data.hist()
 plt.show()
 
-#Diagrama de dispersión
-pd.plotting.scatter_matrix(data, alpha=0.2)
-plt.show()
+#Diagrama de dispersión de 2 variables
 
-#Mapa de correlación
+def diagramas(data, x, y):
+    plt.scatter(data[x], data[y])
+    plt.xlabel(x)
+    plt.ylabel(y)
+    plt.show()
+
+#Vamos a ver Zona_Renta, ESTADO_CIVIL y QUEJA_CAC con el Mas_1_coche
+diagramas(data, 'Zona_Renta', 'Mas_1_coche')
+diagramas(data, 'ESTADO_CIVIL', 'Mas_1_coche')
+diagramas(data, 'QUEJA_CAC', 'Mas_1_coche')
+
+#Vamos a ver Zona_Renta, ESTADO_CIVIL y QUEJA_CAC con el Tiempo
+diagramas(data, 'Zona_Renta', 'Tiempo')
+diagramas(data, 'ESTADO_CIVIL', 'Tiempo')
+diagramas(data, 'QUEJA_CAC', 'Tiempo')
+
+
+# Averia_grave y EDAD_COCHE
+diagramas(data, 'Averia_grave', 'EDAD_COCHE')
+
+#Mas_1_coche y Edad Cliente
+diagramas(data, 'Mas_1_coche', 'Edad Cliente')
+
+
+#Mapa de correlación de los datos
 correlacion = data.corr()
 sns.heatmap(correlacion, annot=True)
 plt.show()
+
 
 
 # Buscamos repetidos
