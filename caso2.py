@@ -25,7 +25,7 @@ model.fit(X_train, y_train)
 #Hacemos predicciones
 y_pred = model.predict(X_test)
 
-#Comprobamos la precisión
+#Comprobamos la precisión 
 print("Precisión: ", accuracy_score(y_test, y_pred))
 
 #Guardamos el modelo
