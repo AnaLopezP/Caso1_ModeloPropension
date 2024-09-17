@@ -10,7 +10,8 @@ data = pd.read_csv('csvs/cars_numeros.csv', sep=';')
 
 #Separamos las variables características de la objetivo
 # variable obetivo Mas_1_coche
-X = data.drop('Mas_1_coche', axis=1)
+#X = data.drop('Mas_1_coche', axis=1)
+X = data[['Tiempo', 'Revisiones', 'EDAD_COCHE', 'PRODUCTO', 'TIPO_CARROCERIA', 'Campanna3']]
 y = data['Mas_1_coche']
 
 #Dividimos los datos en entrenamiento y test
@@ -25,8 +26,11 @@ model.fit(X_train, y_train)
 #Hacemos predicciones
 y_pred = model.predict(X_test)
 
-#Comprobamos la precisión 
-print("Precisión: ", accuracy_score(y_test, y_pred))
+#Calculamos la precisión del modelo
+precision = accuracy_score(y_test, y_pred)
+
+# Mostramos la precisión
+print('Precisión del modelo: ', precision*100, '%')
 
 #Guardamos el modelo
 import joblib
