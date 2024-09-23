@@ -10,7 +10,8 @@ import numpy as np
 data = pd.read_csv('csvs/cars_numeros.csv', sep=';')
 
 # Separar las características y la variable objetivo
-X = data.drop('Mas_1_coche', axis=1)
+#X = data.drop('Mas_1_coche', axis=1)
+X = data[["PRODUCTO", "ESTADO_CIVIL", "OcupaciOn", "Zona_Renta", "QUEJA_CAC", "EDAD_COCHE", "COSTE_VENTA", "Edad Cliente"]]
 y = data['Mas_1_coche']
 
 # División del conjunto de datos en entrenamiento y prueba
