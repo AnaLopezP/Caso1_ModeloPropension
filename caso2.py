@@ -99,3 +99,47 @@ for alpha in ccp_alphas:
     model_alpha = tree.DecisionTreeClassifier(ccp_alpha=alpha, random_state=42)
     scores = cross_val_score(model_alpha, X_train_scaled, y_train, cv=5)
     print(f"Alpha: {alpha:.5f}, Precisión promedio: {scores.mean() * 100:.2f}%")
+    
+
+# Hacemos la matriz de confusión
+from sklearn.metrics import confusion_matrix
+
+matriz_confu = confusion_matrix(y_test, y_pred)
+print("\nMatriz de confusión:")
+print(matriz_confu)
+
+# Hacemos la curva ROC
+from sklearn.metrics import roc_curve
+import matplotlib.pyplot as plt
+
+y_pred_proba = model.predict_proba(X_test_scaled)[:, 1]
+fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
+
+plt.figure()
+plt.plot(fpr, tpr, color='darkorange', lw=2)
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('Tasa de Falsos Positivos')
+plt.ylabel('Tasa de Verdaderos Positivos')
+plt.title('Curva ROC')
+plt.show()
+
+# Calcular el área bajo la curva ROC
+from sklearn.metrics import roc_auc_score
+
+roc_auc = roc_auc_score(y_test, y_pred_proba)
+print(f"\nÁrea bajo la curva ROC: {roc_auc:.2f}")
+
+# Guardar la curva ROC
+np.save('fpr.npy', fpr)
+np.save('tpr.npy', tpr)
+np.save('roc_auc.npy', roc_auc)
+
+# Guardar la matriz de confusión
+np.save('matriz_confu.npy', matriz_confu)
+
+# Guardar la precisión
+np.save('precision.npy', precision)
+
+
