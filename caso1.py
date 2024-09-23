@@ -23,7 +23,8 @@ data = data.drop(columns=['CODE'])
 # Buscamos repetidos
 print("Numero de filas duplicadas: ")
 print(data.duplicated().sum())
-# Vemos que no hay datos duplicados
+# quitamos los duplicados
+data = data.drop_duplicates()
 
 
 # Buscamos datos inconsistentes
