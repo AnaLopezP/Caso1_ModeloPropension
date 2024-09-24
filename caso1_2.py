@@ -88,6 +88,12 @@ data_cat.to_csv('csvs/data_cat.csv', sep=';', index=False)
 data = pd.concat([data_cat, data_num], axis=1)
 data.to_csv('csvs/cars_numeros.csv', sep=';', index=False)
 
+#------------------------FILTRAR LOS DATOS-------------------------------- ESTO ES UNA EVOLUCION DEL CASO
+# voy a filtrar el dataser, cogiendo solo los valores si en la columna mas_1_coche
+# tiene un valor de 1
+data = data[data['mas_1_coche'] == 1]
+#los modelos de regresion tienden al sobreentrenamiento, dice que usemos el parámetro con 2 o 3
+
 #-------------------------REPRESENTACIÓN DE LOS DATOS--------------------------------
 
 #Representamos los datos, hacemos histogramas, diagramas de dispersión, mapa de correlación
@@ -100,8 +106,10 @@ correlacion = data.corr()
 sns.heatmap(correlacion, annot=True)
 plt.show()
 
+#dice que no nos fiemos del coef de correlacion, que miremos otras cosas como la curva Q de residuos
+# la cueva QQ nos dice la distribucion en el tiempo. queremos que esté más juntos los puntos a corto 
+# plazo, ya que yo quiero que el cliente venga YA
+# un cliente que tarda mucho en volver es un cliente de poco valor
 
-
-
-
-
+# en los modelos de regresion hay que hacer feature engeniering, 
+# ratio entre km y fidelidad, ratio enter coste venta y no se que más
