@@ -32,6 +32,3 @@ data['Predicciones'] = predicciones
 
 #Guardamos los resultados en un csv
 data.to_csv('csvs/predicciones_cars.csv', sep=';', index = False)
-
-
-
