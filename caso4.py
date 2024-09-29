@@ -70,8 +70,9 @@ plt.barh(feature_importance_df['Feature'], feature_importance_df['Importance'], 
 plt.title('Importancia de las características en el modelo Random Forest')
 plt.xlabel('Importancia')
 plt.gca().invert_yaxis()  # Invertimos el eje y para que la característica más importante esté en la parte superior
-plt.show()
 plt.savefig('img/importancia_caracteristicas.png')
+plt.show()
+
 
 
 
