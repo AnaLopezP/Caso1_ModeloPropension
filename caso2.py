@@ -87,4 +87,29 @@ np.save('matriz_confu.npy', matriz_confu)
 # Guardar la precisión
 np.save('precision.npy', precision)
 
+# Guardo las imágenes en la carpeta img
+import os
+os.makedirs('img', exist_ok=True)
+
+# Guardamos la curva ROC
+plt.figure()
+plt.plot(fpr, tpr, color='darkorange', lw=2)
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('Tasa de Falsos Positivos')
+plt.ylabel('Tasa de Verdaderos Positivos')
+plt.title('Curva ROC')
+plt.savefig('img/roc.png')
+
+# Guardamos la matriz de confusión
+import seaborn as sns
+
+plt.figure()
+sns.heatmap(matriz_confu, annot=True, cmap='Blues')
+plt.xlabel('Predicciones')
+plt.ylabel('Valores reales')
+plt.title('Matriz de confusión')
+plt.savefig('img/matriz_confusion.png')
+
 

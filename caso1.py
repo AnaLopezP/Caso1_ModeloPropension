@@ -114,7 +114,21 @@ correlacion = data.corr()
 sns.heatmap(correlacion, annot=True)
 plt.show()
 
+# Creo una carpeta para guardar las imágenes
+import os
+os.makedirs('img', exist_ok=True)
 
+# Guardamos el histograma
+plt.figure(figsize=(10, 5))
+data.hist()
+plt.tight_layout()
+plt.savefig('img/histograma.png')
+
+# Guardamos el mapa de correlación
+plt.figure(figsize=(10, 5))
+sns.heatmap(correlacion, annot=True)
+plt.tight_layout()
+plt.savefig('img/correlacion.png')
 
 
 

@@ -1,5 +1,5 @@
 # Aquí vamos comparar con gráficas los resultados de predicciones_cars con Mas_1_coche de cars_numeros
-#from caso2 import X_train, model
+from caso2 import X_train, model
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve
@@ -42,11 +42,36 @@ for p in ax2.patches:
                  ha='center', va='baseline', fontsize=10, color='black', xytext=(0, 5),
                  textcoords='offset points')
 
+# Guardamos la gráfica en la carpeta 'img' con formato PNG
+plt.savefig('img/comparacion_porcentajes.png')
+
+# Si prefieres mostrar la gráfica en pantalla también
 plt.show()
-
-
 
 # Vemos que la proporcion de 1 y 0 es similar en ambos casos (el csv de entrenamiento y el utilizado para predecir), 
 # osea que podemos deducir que el modelo ha funcionado bien
-# varía en un 1% aproximadamente, lo cual es un buen resultado
+# varía en un 1%, lo cual es un margen aceptable
+
+# Obtenemos la importancia de las características
+importances = model.feature_importances_
+
+# Creamos un DataFrame para visualizar las características y su importancia
+feature_importance_df = pd.DataFrame({
+    'Feature': X_train.columns,
+    'Importance': importances
+}).sort_values(by='Importance', ascending=False)
+
+# Mostramos la importancia de las características
+print(feature_importance_df)
+
+# También podemos graficar la importancia de las características
+plt.figure(figsize=(10, 6))
+plt.barh(feature_importance_df['Feature'], feature_importance_df['Importance'], color='skyblue')
+plt.title('Importancia de las características en el modelo Random Forest')
+plt.xlabel('Importancia')
+plt.gca().invert_yaxis()  # Invertimos el eje y para que la característica más importante esté en la parte superior
+plt.show()
+plt.savefig('img/importancia_caracteristicas.png')
+
+
 
