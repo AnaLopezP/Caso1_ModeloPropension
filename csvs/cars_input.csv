@@ -1,4 +1,4 @@
-CODE;PRODUCTO;TIPO_CARROCERIA;COMBUSTIBLE;Potencia_;TRANS;FORMA_PAGO;ESTADO_CIVIL;GENERO;OcupaciOn;PROVINCIA;Campanna1;Campanna2;Campanna3;Zona _Renta;REV_Garantia;Averia_grave;QUEJA_CAC;COSTE_VENTA;km_anno;Revisiones;Edad Cliente
+CODE;PRODUCTO;TIPO_CARROCERIA;COMBUSTIBLE;Potencia_;TRANS;FORMA_PAGO;ESTADO_CIVIL;GENERO;OcupaciOn;PROVINCIA;Campanna1;Campanna2;Campanna3;Zona_Renta;REV_Garantia;Averia_grave;QUEJA_CAC;COSTE_VENTA;km_anno;Revisiones;Edad Cliente
 CLIN1;A;TIPO1;FUEL 1;Baja;M;Contado;CASADO;M;Empresa;Asturias;SI;NO;NO;Medio-Bajo;NO DATA;Averia muy grave;SI;3239;0;2;18
 CLIN2;A;TIPO1;FUEL 1;Baja;M;Contado;CASADO;F;Empresa;Toledo;NO;NO;NO;Medio-Bajo;SI;No;NO;1541;7187;2;53
 CLIN3;A;TIPO1;FUEL 1;Baja;M;Otros;CASADO;M;Empresa;Lerida;NO;NO;NO;Medio;NO DATA;No;NO;1541;0;4;21

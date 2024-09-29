@@ -1,7 +1,7 @@
 
 #cargamos los datos 
 import pandas as pd
-data = pd.read_csv('csvs/cars_input.csv', sep=';', encoding='UTF-8')
+data = pd.read_csv('csvs/cars_input_numeros.csv', sep=';', encoding='UTF-8')
 
 
 # Separamos en datos categóricos y numéricos

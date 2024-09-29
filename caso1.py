@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-#import seaborn as sns
+
 
 # Importamos los datos
 data = pd.read_csv('csvs/cars_input.csv', sep=';', encoding='UTF-8')
@@ -12,6 +12,20 @@ data.head()
 
 #Eliminamos la columna CODE
 data = data.drop(columns=['CODE'])
+
+#Agregamos la columna EDAD_COCHE siendo años random, entre la columna QUEJA_CAC y COSTE_VENTA
+
+# Generamos una columna de años aleatorios entre 'QUEJA_CAC' y 'COSTE_VENTA'
+data['EDAD_COCHE'] = np.random.randint(1, 20, data.shape[0])
+
+# Verificamos en qué posición está 'QUEJA_CAC'
+posicion_queja = data.columns.get_loc('QUEJA_CAC')
+
+# Insertamos la columna 'EDAD_COCHE' justo después de 'QUEJA_CAC' y antes de 'COSTE_VENTA'
+data.insert(posicion_queja + 1, 'EDAD_COCHE', data.pop('EDAD_COCHE'))
+
+
+
 
 
 #-------------------------LIMPIEZA DE LOS DATOS--------------------------------
@@ -31,7 +45,7 @@ data = data.drop_duplicates()
 print("Datos inconsistentes: ")
 print(data['GENERO'].unique())
 print(data['ESTADO_CIVIL'].unique())
-#print(data['Zona_Renta'].unique())
+print(data['Zona_Renta'].unique())
 print(data['Averia_grave'].unique())
 
 # Buscamos nulos (null y vacios)
@@ -45,7 +59,7 @@ print(data.isnull().sum())
 
 data['ESTADO_CIVIL'] = data['ESTADO_CIVIL'].fillna('OTROS')
 data['GENERO'] = data['GENERO'].fillna('Otro')
-#data['Zona_Renta'] = data['Zona_Renta'].fillna('Otros')
+data['Zona_Renta'] = data['Zona_Renta'].fillna('Otros')
 data = data.dropna(subset=['Averia_grave'])
 
 # Comprobamos que ha funcionado:
