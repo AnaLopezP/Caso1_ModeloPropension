@@ -7,7 +7,7 @@ import seaborn as sns
 #import seaborn as sns
 
 # Importamos los datos
-data = pd.read_csv('csvs/cars.csv', sep=';', encoding='UTF-8')
+data = pd.read_csv('csvs/cars_input.csv', sep=';', encoding='UTF-8')
 data.head()
 
 #Eliminamos la columna CODE
@@ -31,7 +31,7 @@ data = data.drop_duplicates()
 print("Datos inconsistentes: ")
 print(data['GENERO'].unique())
 print(data['ESTADO_CIVIL'].unique())
-print(data['Zona_Renta'].unique())
+#print(data['Zona_Renta'].unique())
 print(data['Averia_grave'].unique())
 
 # Buscamos nulos (null y vacios)
@@ -45,7 +45,7 @@ print(data.isnull().sum())
 
 data['ESTADO_CIVIL'] = data['ESTADO_CIVIL'].fillna('OTROS')
 data['GENERO'] = data['GENERO'].fillna('Otro')
-data['Zona_Renta'] = data['Zona_Renta'].fillna('Otros')
+#data['Zona_Renta'] = data['Zona_Renta'].fillna('Otros')
 data = data.dropna(subset=['Averia_grave'])
 
 # Comprobamos que ha funcionado:
@@ -58,7 +58,7 @@ print(data.describe())
 # Aunque igual hay algun dato más alto que otro, no consideramos que sea atípico, ya que se repite varias veces
 
 # Guardamos el archivo limpio
-data.to_csv('csvs/cars_clean.csv', sep=';', index=False)
+data.to_csv('csvs/cars_input_clean.csv', sep=';', index=False)
 print("Archivo guardado")
 
 # Separamos en datos categóricos y numéricos
@@ -82,11 +82,11 @@ for col in data_cat.columns:
     print(data_cat[col].unique())
 
 #guardamos los datos
-data_cat.to_csv('csvs/data_cat.csv', sep=';', index=False)
+data_cat.to_csv('csvs/data_cars_input.csv', sep=';', index=False)
 
 #Juntamos los datos
 data = pd.concat([data_cat, data_num], axis=1)
-data.to_csv('csvs/cars_numeros.csv', sep=';', index=False)
+data.to_csv('csvs/cars_input_numeros.csv', sep=';', index=False)
 
 #-------------------------REPRESENTACIÓN DE LOS DATOS--------------------------------
 
