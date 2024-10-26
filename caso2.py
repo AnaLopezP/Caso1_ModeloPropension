@@ -106,6 +106,7 @@ plt.savefig('img/roc.png')
 import seaborn as sns
 
 
+
 plt.figure()
 sns.heatmap(matriz_confu, annot=True, cmap='Blues')
 plt.xlabel('Predicciones')
