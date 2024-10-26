@@ -105,6 +105,7 @@ plt.savefig('img/roc.png')
 # Guardamos la matriz de confusión
 import seaborn as sns
 
+
 plt.figure()
 sns.heatmap(matriz_confu, annot=True, cmap='Blues')
 plt.xlabel('Predicciones')
